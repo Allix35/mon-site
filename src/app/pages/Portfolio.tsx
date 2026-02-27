@@ -2,43 +2,46 @@ import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
 import { Mail, Github, Linkedin, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router';
-import profileImg from 'figma:asset/b4807f414c56ada8c8c61dfa17bc7e38fa5562ad.png';
-import argentBankImg from 'figma:asset/3f06a5c552ddc2f6b3d200dfd70644624b061f5a.png';
-import kasaImg from 'figma:asset/9b2a536b45689f587e9d92acfd184f267ca5258e.png';
-import sophieBluelImg from 'figma:asset/1c3d395517b20cf45fdb9bdd588b20862ede94d8.png';
-import bookiImg from 'figma:asset/ec928febefc5378ad59c8ca77096f71536456294.png';
-import ohmyfoodImg from 'figma:asset/1ebe4c946ff468970dd8e6d521508e1f6408edbd.png';
+import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+
+import imgArgentBank  from '@/assets/3f06a5c552ddc2f6b3d200dfd70644624b061f5a.png';
+import imgBooki       from '@/assets/ec928febefc5378ad59c8ca77096f71536456294.png';
+import imgKasa        from '@/assets/9b2a536b45689f587e9d92acfd184f267ca5258e.png';
+import imgOhmyfood    from '@/assets/1ebe4c946ff468970dd8e6d521508e1f6408edbd.png';
+import imgSophieBluel from '@/assets/1c3d395517b20cf45fdb9bdd588b20862ede94d8.png';
+import imgProfil      from '@/assets/b4807f414c56ada8c8c61dfa17bc7e38fa5562ad.png';
 
 const projects = [
   {
     title: "Argent Bank",
     description: "Application bancaire fullstack développée avec React, Redux et Sass. L'authentification est sécurisée via JWT.",
     tech: ["React", "Redux", "Node.js", "Swagger"],
-    image: argentBankImg,
+    image: imgArgentBank,
   },
   {
     title: "Kasa",
     description: "Application web de location immobilière développée avec React, utilisant React Router pour la navigation et un design responsive basé sur SASS.",
     tech: ["React", "SASS", "JavaScript"],
-    image: kasaImg,
+    image: imgKasa,
   },
   {
     title: "OhMyFood",
     description: "Site de réservation de menus de restaurants gastronomiques avec animations CSS3 et design mobile-first.",
     tech: ["HTML5", "CSS3", "SASS"],
-    image: ohmyfoodImg,
+    image: imgOhmyfood,
+    link: "https://allix35.github.io/Ohmyfood/",
   },
   {
     title: "Sophie Bluel",
     description: "Site web responsive de présentation pour une architecte d'intérieur, développé en JavaScript avec gestion dynamique des contenus via API REST.",
     tech: ["HTML5", "CSS3", "JavaScript", "Node.js"],
-    image: sophieBluelImg,
+    image: imgSophieBluel,
   },
   {
     title: "Booki",
     description: "Refonte d'une page d'agence de voyage avec HTML5 et CSS3, en respectant la maquette Figma et le responsive design.",
     tech: ["HTML5", "CSS3"],
-    image: bookiImg,
+    image: imgBooki,
     link: "https://allix35.github.io/Booki/",
   },
 ];
@@ -60,7 +63,6 @@ function PortfolioHero() {
 
   return (
     <section className="relative py-20 px-6 md:px-12 overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-      {/* Back Button */}
       <div className="max-w-6xl mx-auto mb-8">
         <Link to="/">
           <motion.button
@@ -73,7 +75,6 @@ function PortfolioHero() {
         </Link>
       </div>
 
-      {/* Floating decoration */}
       <motion.div
         className="absolute top-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
         animate={{ y: [0, -20, 0] }}
@@ -82,7 +83,6 @@ function PortfolioHero() {
 
       <div ref={ref} className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-12">
-          {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
@@ -90,15 +90,14 @@ function PortfolioHero() {
             className="flex-shrink-0"
           >
             <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden border-4 border-primary shadow-2xl">
-              <img
-                src={profileImg}
+              <ImageWithFallback
+                src={imgProfil}
                 alt="Allix Dolou"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
           </motion.div>
 
-          {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
@@ -205,7 +204,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       className="bg-card rounded-3xl overflow-hidden border border-border hover:border-primary/30 transition-all duration-300 hover:-translate-y-2 shadow-sm hover:shadow-xl"
     >
       <div className="relative h-64 overflow-hidden">
-        <img
+        <ImageWithFallback
           src={project.image}
           alt={project.title}
           className="w-full h-full object-cover"

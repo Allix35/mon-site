@@ -136,7 +136,11 @@ function OfferAccordion({ offer, index }: { offer: typeof offers[0]; index: numb
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      transition={{ 
+        duration: 0.6, 
+        delay: index * 0.15,
+        ease: [0.25, 0.46, 0.45, 0.94] // easeOutCubic for smooth animation
+      }}
       className="bg-card rounded-2xl border-2 border-warm-light hover:border-primary/30 transition-all duration-300 shadow-sm hover:shadow-md overflow-hidden"
     >
       {/* Header - Always visible */}
@@ -160,7 +164,7 @@ function OfferAccordion({ offer, index }: { offer: typeof offers[0]; index: numb
           </div>
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="text-muted-foreground"
           >
             <ChevronDown className="w-6 h-6" />
@@ -175,7 +179,10 @@ function OfferAccordion({ offer, index }: { offer: typeof offers[0]; index: numb
           height: isOpen ? 'auto' : 0,
           opacity: isOpen ? 1 : 0,
         }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        transition={{ 
+          duration: 0.4,
+          ease: [0.25, 0.46, 0.45, 0.94] // easeOutCubic for smooth expansion
+        }}
         className="overflow-hidden"
       >
         <div className="px-6 pb-6 border-t border-border">
