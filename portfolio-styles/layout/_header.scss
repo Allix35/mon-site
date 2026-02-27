@@ -1,0 +1,62 @@
+@use "../variables" as *;
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background-color: rgba(254, 254, 254, 0.95);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid $color-border;
+  transition: all $transition-normal;
+
+  @media (max-width: 768px) {
+    padding: 1rem 1.5rem;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    margin-left: auto;
+
+    @media (max-width: 768px) {
+      gap: 1.5rem;
+    }
+  }
+
+  .nav-link {
+    color: $color-foreground;
+    text-decoration: none;
+    font-family: $font-main;
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    transition: color $transition-normal;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, $color-primary, $warm-medium);
+      transition: width $transition-normal;
+    }
+    
+    &:hover {
+      color: $color-primary;
+      
+      &::after {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+  }
+}

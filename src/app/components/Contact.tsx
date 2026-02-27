@@ -1,243 +1,159 @@
-import { motion } from 'motion/react';
-import { useInView } from 'motion/react';
+import { motion, useInView } from 'motion/react';
 import { useRef, useState } from 'react';
-import { Mail, MessageSquare, Send, CheckCircle } from 'lucide-react';
+import { Mail, Github, Linkedin, Send } from 'lucide-react';
 
 export function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const [formState, setFormState] = useState({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
-    message: '',
+    message: ''
   });
-  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormState({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
+    // Créer le mailto avec les données du formulaire
+    const subject = encodeURIComponent(`Contact de ${formData.name}`);
+    const body = encodeURIComponent(`Nom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+    window.location.href = `mailto:allix.dolou@gmail.com?subject=${subject}&body=${body}`;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value,
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
     });
   };
 
   return (
-    <section id="contact" className="py-24 px-6 bg-gradient-to-br from-accent/20 via-background to-warm-light/20">
-      <div className="max-w-5xl mx-auto">
+    <section id="contact" className="py-20 px-6 bg-gradient-to-b from-warm-light/30 to-background">
+      <div className="max-w-4xl mx-auto">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <motion.div
-            className="inline-block mb-4"
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <span className="text-primary text-sm tracking-widest">CONTACT</span>
-          </motion.div>
-          <h2 className="text-4xl md:text-5xl mb-6 text-foreground">
-            Prêt à démarrer
-            <br />
-            <span className="text-primary">votre projet ?</span>
+          <h2 className="text-4xl md:text-5xl text-foreground mb-4">
+            Travaillons ensemble
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Discutons de vos besoins et créons ensemble le site web qui fera grandir votre activité
+          <p className="text-xl text-muted-foreground">
+            Discutons de votre projet et trouvons la meilleure solution
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-8"
-          >
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ delay: 0.2 }}
+          className="bg-card rounded-3xl p-8 md:p-12 border border-border shadow-lg"
+        >
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <h3 className="text-2xl mb-6 text-foreground">Parlons de votre projet</h3>
-              <p className="text-muted-foreground mb-8">
-                Que vous ayez déjà une idée précise ou que vous ayez besoin de conseils, 
-                je suis là pour vous accompagner à chaque étape.
-              </p>
+              <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                Nom
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                placeholder="Votre nom"
+              />
             </div>
 
-            <motion.div
-              className="space-y-6"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ delay: 0.4 }}
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                placeholder="votre@email.com"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={6}
+                className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none"
+                placeholder="Parlez-moi de votre projet..."
+              />
+            </div>
+
+            <motion.button
+              type="submit"
+              className="w-full px-8 py-4 bg-gradient-to-r from-secondary to-primary text-white rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <motion.div
-                className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border hover:border-primary/50 transition-colors"
-                whileHover={{ x: 8 }}
+              <Send className="w-5 h-5" />
+              Envoyer le message
+            </motion.button>
+          </form>
+
+          <div className="border-t border-border pt-8 mt-8">
+            <h3 className="text-xl text-foreground mb-4 text-center">Ou contactez-moi directement</h3>
+            <div className="flex flex-col items-center gap-4 mb-6">
+              <a
+                href="mailto:allix.dolou@gmail.com"
+                className="text-primary hover:underline text-lg flex items-center gap-2"
               >
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="mb-1 text-foreground">Email</h4>
-                  <p className="text-muted-foreground">contact@votresite.fr</p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border hover:border-primary/50 transition-colors"
-                whileHover={{ x: 8 }}
+                <Mail className="w-5 h-5" />
+                allix.dolou@gmail.com
+              </a>
+            </div>
+            
+            <h3 className="text-xl text-foreground mb-4 text-center">Retrouvez-moi sur</h3>
+            <div className="flex justify-center gap-6">
+              <motion.a
+                href="https://github.com/Allix35"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-14 h-14 bg-foreground/5 hover:bg-primary/10 rounded-xl flex items-center justify-center transition-colors"
+                whileHover={{ scale: 1.1, y: -4 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <MessageSquare className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="mb-1 text-foreground">Réponse rapide</h4>
-                  <p className="text-muted-foreground">Sous 24h en semaine</p>
-                </div>
-              </motion.div>
-            </motion.div>
+                <Github className="w-6 h-6 text-foreground hover:text-primary transition-colors" />
+              </motion.a>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: 0.6 }}
-              className="pt-8"
-            >
-              <p className="text-sm text-muted-foreground mb-4">Disponible pour</p>
-              <div className="flex flex-wrap gap-3">
-                {['Nouveaux projets', 'Consulting', 'Maintenance'].map((tag, i) => (
-                  <motion.span
-                    key={i}
-                    className="px-4 py-2 bg-primary/10 text-primary rounded-lg"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                    transition={{ delay: 0.7 + i * 0.1 }}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    {tag}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block mb-2 text-foreground">
-                  Nom complet
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formState.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-input-background border-2 border-border rounded-xl focus:border-primary focus:outline-none transition-colors"
-                  placeholder="Jean Dupont"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block mb-2 text-foreground">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-input-background border-2 border-border rounded-xl focus:border-primary focus:outline-none transition-colors"
-                  placeholder="jean@exemple.fr"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="block mb-2 text-foreground">
-                  Type de projet
-                </label>
-                <select
-                  id="subject"
-                  name="subject"
-                  value={formState.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-input-background border-2 border-border rounded-xl focus:border-primary focus:outline-none transition-colors"
-                >
-                  <option value="">Sélectionnez une option</option>
-                  <option value="starter">Offre STARTER</option>
-                  <option value="essentiel">Offre ESSENTIEL</option>
-                  <option value="pro">Offre PRO</option>
-                  <option value="autre">Autre demande</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block mb-2 text-foreground">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formState.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 bg-input-background border-2 border-border rounded-xl focus:border-primary focus:outline-none transition-colors resize-none"
-                  placeholder="Parlez-moi de votre projet..."
-                />
-              </div>
-
-              <motion.button
-                type="submit"
-                className="w-full px-8 py-4 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 shadow-lg"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                disabled={submitted}
+              <motion.a
+                href="https://www.linkedin.com/in/allix-dolou-17488910a/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-14 h-14 bg-foreground/5 hover:bg-primary/10 rounded-xl flex items-center justify-center transition-colors"
+                whileHover={{ scale: 1.1, y: -4 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {submitted ? (
-                  <>
-                    <CheckCircle className="w-5 h-5" />
-                    Message envoyé !
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-5 h-5" />
-                    Envoyer le message
-                  </>
-                )}
-              </motion.button>
+                <Linkedin className="w-6 h-6 text-foreground hover:text-primary transition-colors" />
+              </motion.a>
+            </div>
+          </div>
 
-              {submitted && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-center text-primary"
-                >
-                  Merci ! Je vous répondrai dans les plus brefs délais.
-                </motion.div>
-              )}
-            </form>
-          </motion.div>
-        </div>
+          <div className="bg-primary/5 rounded-2xl p-6 mt-8">
+            <p className="text-center text-foreground">
+              <span className="block text-lg mb-2">💡 Prêt(e) à démarrer ?</span>
+              Je vous réponds sous 24h !
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

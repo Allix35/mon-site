@@ -1,24 +1,33 @@
-import { createBrowserRouter } from 'react-router';
-import { Home } from './pages/Home';
-import { LegalNotice } from './pages/LegalNotice';
-import { PrivacyPolicy } from './pages/PrivacyPolicy';
-import { TermsOfSale } from './pages/TermsOfSale';
+import { createBrowserRouter, redirect } from 'react-router';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    Component: Home,
+    lazy: () => import('./pages/Home').then(m => ({ Component: m.Home })),
+  },
+  {
+    path: '/portfolio',
+    lazy: () => import('./pages/Portfolio').then(m => ({ Component: m.Portfolio })),
+  },
+  {
+    path: '/portfolio-demo',
+    loader: () => redirect('/portfolio'),
+    Component: () => null,
   },
   {
     path: '/mentions-legales',
-    Component: LegalNotice,
+    lazy: () => import('./pages/LegalNotice').then(m => ({ Component: m.LegalNotice })),
   },
   {
     path: '/politique-confidentialite',
-    Component: PrivacyPolicy,
+    lazy: () => import('./pages/PrivacyPolicy').then(m => ({ Component: m.PrivacyPolicy })),
   },
   {
     path: '/cgv',
-    Component: TermsOfSale,
+    lazy: () => import('./pages/TermsOfSale').then(m => ({ Component: m.TermsOfSale })),
+  },
+  {
+    path: '*',
+    lazy: () => import('./pages/NotFound').then(m => ({ Component: m.NotFound })),
   },
 ]);

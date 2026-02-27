@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Eye } from 'lucide-react';
+import { Link } from 'react-router';
 
 export function Hero() {
   const handleScrollToContact = () => {
@@ -66,11 +67,11 @@ export function Hero() {
         >
           <motion.button
             onClick={handleScrollToContact}
-            className="group relative px-8 py-4 bg-primary text-primary-foreground rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+            className="px-8 py-4 bg-gradient-to-r from-secondary to-primary text-white rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
-            <span className="relative z-10 flex items-center gap-2">
+            <span className="flex items-center gap-2">
               Démarrer un projet
               <motion.span
                 animate={{ x: [0, 5, 0] }}
@@ -79,22 +80,35 @@ export function Hero() {
                 <ArrowRight className="w-5 h-5" />
               </motion.span>
             </span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-primary to-secondary"
-              initial={{ x: '100%' }}
-              whileHover={{ x: 0 }}
-              transition={{ duration: 0.3 }}
-            />
           </motion.button>
 
           <motion.a
             href="#offres"
-            className="px-8 py-4 border-2 border-primary text-primary rounded-xl hover:bg-primary/5 transition-colors"
+            className="px-8 py-4 border-2 border-primary text-primary rounded-xl hover:bg-primary/10 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
             Découvrir mes offres
           </motion.a>
+        </motion.div>
+        
+        {/* Portfolio Link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="mt-8"
+        >
+          <Link to="/portfolio">
+            <motion.button
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-secondary to-primary text-white rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Eye className="w-5 h-5" />
+              Voir mon portfolio de projets
+            </motion.button>
+          </Link>
         </motion.div>
       </div>
     </section>

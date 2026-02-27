@@ -1,0 +1,54 @@
+$font-main: 'Poppins', sans-serif;
+
+// Palette de couleurs - cohérente avec le site principal
+$color-background: #FEFEFE;
+$color-foreground: #2D2D2D;
+
+$color-primary: #FF9A76;
+$color-primary-hover: #FF8260;
+$color-primary-foreground: #FFFFFF;
+
+$color-secondary: #A8D8EA;
+$color-secondary-foreground: #2D2D2D;
+
+$color-accent: #FFD98E;
+$color-accent-foreground: #2D2D2D;
+
+$color-muted: #F8F8F8;
+$color-muted-foreground: #888888;
+
+$color-card: #FFFFFF;
+$color-border: rgba(255, 154, 118, 0.15);
+
+$warm-light: #FFF5F0;
+$warm-medium: #FFAB91;
+$warm-dark: #FF7043;
+
+$yellow-light: #FFF3DC;
+
+// Gradients
+$gradient-skill: linear-gradient(to right, $color-primary, $warm-medium, $warm-dark);
+$gradient-hero: linear-gradient(135deg, rgba(255, 154, 118, 0.1), rgba(168, 216, 234, 0.1));
+
+// Shadows
+$shadow-sm: 0 2px 8px rgba(255, 154, 118, 0.1);
+$shadow-md: 0 4px 16px rgba(255, 154, 118, 0.15);
+$shadow-lg: 0 8px 24px rgba(255, 154, 118, 0.2);
+
+// Border radius
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 20px;
+
+// Spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 4rem;
+$spacing-xl: 6rem;
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;

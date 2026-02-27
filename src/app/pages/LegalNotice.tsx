@@ -1,89 +1,100 @@
-import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router';
+import { ArrowLeft } from 'lucide-react';
 
 export function LegalNotice() {
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        <Link 
-          to="/" 
-          className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Retour à l'accueil
+    <div className="min-h-screen bg-background py-12 px-6">
+      <div className="max-w-4xl mx-auto">
+        <Link to="/">
+          <button className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors mb-8">
+            <ArrowLeft className="w-5 h-5" />
+            Retour à l'accueil
+          </button>
         </Link>
 
-        <h1 className="text-4xl mb-8 text-foreground">Mentions légales</h1>
+        <h1 className="text-4xl md:text-5xl text-foreground mb-8">Mentions légales</h1>
 
-        <div className="prose prose-lg max-w-none space-y-8 text-foreground">
-          <section>
-            <h2 className="text-2xl mb-4 text-foreground">Article 1 — Éditeur du site</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Le site est édité par :
+        <div className="prose prose-lg max-w-none">
+          <section className="mb-8">
+            <h2 className="text-2xl text-foreground mb-4">1. Informations légales</h2>
+            <p className="text-muted-foreground mb-4">
+              Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique, 
+              il est précisé aux utilisateurs du site l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi.
             </p>
-            <ul className="text-muted-foreground space-y-1 list-none">
-              <li><strong>Allix Dolou</strong>, Entrepreneur Individuel</li>
-              <li>SIREN : 988 132 262</li>
-              <li>SIRET : 98813226200011</li>
-              <li>Code NAF : 6201Z — Programmation informatique</li>
-              <li>RCS Marseille — Immatriculé le 17/06/2025</li>
-              <li>TVA non applicable, article 293B du CGI</li>
-              <li>Adresse : <em>[258 boulevard Romain Rolland 13009 Marseille]</em></li>
-              <li>Email : allix.dolou@gmail.com</li>
-              <li>Téléphone : <em>[0671820112]</em></li>
-            </ul>
+            <div className="bg-card p-6 rounded-xl border border-border">
+              <p className="text-foreground mb-2"><strong>Éditeur du site :</strong></p>
+              <p className="text-muted-foreground">Allix Dolou</p>
+              <p className="text-muted-foreground">Entrepreneur Individuel</p>
+              <p className="text-muted-foreground">SIRET : 98813226200011</p>
+              <p className="text-muted-foreground">RCS Marseille</p>
+              <p className="text-muted-foreground">Email : allix.dolou@gmail.com</p>
+            </div>
           </section>
 
-          <section>
-            <h2 className="text-2xl mb-4 text-foreground">Article 2 — Directeur de la publication</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Allix Dolou, en qualité d'Entrepreneur Individuel.
-            </p>
+          <section className="mb-8">
+            <h2 className="text-2xl text-foreground mb-4">2. Hébergement</h2>
+            <div className="bg-card p-6 rounded-xl border border-border">
+              <p className="text-foreground mb-2"><strong>Hébergeur :</strong></p>
+              <p className="text-muted-foreground">Vercel Inc.</p>
+              <p className="text-muted-foreground">340 S Lemon Ave #4133</p>
+              <p className="text-muted-foreground">Walnut, CA 91789, USA</p>
+            </div>
           </section>
 
-          <section>
-            <h2 className="text-2xl mb-4 text-foreground">Article 3 — Hébergement</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Le site est hébergé par :
+          <section className="mb-8">
+            <h2 className="text-2xl text-foreground mb-4">3. Propriété intellectuelle</h2>
+            <p className="text-muted-foreground mb-4">
+              L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. 
+              Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques.
             </p>
-            <ul className="text-muted-foreground space-y-1 list-none">
-              <li>Raison sociale : Vercel Inc.</li>
-              <li>Adresse : 440 N Barranca Ave #4133, Covina, CA 91723, USA</li>
-              <li>Site web : <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">vercel.com</a></li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-2xl mb-4 text-foreground">Article 4 — Propriété intellectuelle</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              L'ensemble des contenus présents sur ce site (textes, images, graphismes, logo, code) sont la propriété
-              exclusive d'Allix Dolou, sauf mentions contraires. Toute reproduction, représentation ou diffusion, totale
-              ou partielle, sans autorisation préalable et écrite est interdite et constituerait une contrefaçon sanctionnée
-              par les articles L.335-2 et suivants du Code de la Propriété Intellectuelle.
+            <p className="text-muted-foreground">
+              La reproduction de tout ou partie de ce site sur un support électronique quel qu'il soit est formellement interdite 
+              sauf autorisation expresse du directeur de la publication.
             </p>
           </section>
 
-          <section>
-            <h2 className="text-2xl mb-4 text-foreground">Article 5 — Responsabilité</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Allix Dolou s'efforce de maintenir les informations publiées sur ce site aussi précises et à jour que
-              possible. Toutefois, la responsabilité du site ne peut être engagée en cas d'omission, d'inexactitude ou
-              de lacune dans les informations disponibles. Les liens hypertextes présents sur le site peuvent renvoyer
-              vers des sites tiers. Allix Dolou ne saurait être responsable du contenu de ces sites externes.
+          <section className="mb-8">
+            <h2 className="text-2xl text-foreground mb-4">4. Responsabilité</h2>
+            <p className="text-muted-foreground mb-4">
+              Les informations contenues sur ce site sont aussi précises que possibles et le site est périodiquement remis à jour, 
+              mais peut toutefois contenir des inexactitudes, des omissions ou des lacunes.
+            </p>
+            <p className="text-muted-foreground">
+              Si vous constatez une lacune, erreur ou ce qui paraît être un dysfonctionnement, merci de bien vouloir le signaler par email 
+              à l'adresse allix.dolou@gmail.com, en décrivant le problème de la manière la plus précise possible.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl text-foreground mb-4">5. Liens hypertextes</h2>
+            <p className="text-muted-foreground mb-4">
+              Le site peut contenir des liens hypertextes vers d'autres sites présents sur le réseau Internet. 
+              Les liens vers ces autres ressources vous font quitter le site.
+            </p>
+            <p className="text-muted-foreground">
+              Il est possible de créer un lien vers la page de présentation de ce site sans autorisation expresse de l'éditeur. 
+              Aucune autorisation ou demande d'information préalable ne peut être exigée par l'éditeur à l'égard d'un site qui souhaite établir un lien vers le site de l'éditeur.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl text-foreground mb-4">6. Protection des données personnelles</h2>
+            <p className="text-muted-foreground mb-4">
+              Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, 
+              de rectification et de suppression des données vous concernant.
+            </p>
+            <p className="text-muted-foreground">
+              Pour exercer ce droit, vous pouvez nous contacter par email à l'adresse : allix.dolou@gmail.com
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl mb-4 text-foreground">Article 6 — Droit applicable</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Les présentes mentions légales sont soumises au droit français. En cas de litige, les tribunaux
-              compétents seront ceux du ressort de Marseille.
+            <h2 className="text-2xl text-foreground mb-4">7. Droit applicable</h2>
+            <p className="text-muted-foreground">
+              Tout litige en relation avec l'utilisation du site est soumis au droit français. 
+              L'utilisateur ainsi que l'éditeur acceptent de se soumettre à la compétence exclusive des tribunaux français.
             </p>
           </section>
-
-          <footer className="mt-12 pt-6 border-t border-border text-sm text-muted-foreground italic">
-            Mentions légales version 1.0 — Juin 2025. Dernière mise à jour : Février 2025.
-          </footer>
         </div>
       </div>
     </div>

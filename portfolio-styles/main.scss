@@ -1,0 +1,20 @@
+// Point d'entrée principal pour tous les styles SCSS du portfolio
+// Architecture modulaire avec la nouvelle palette de couleurs
+
+@use './variables' as *;
+@use './mixins';
+@use './reset';
+@use './global';
+
+// Layout
+@use './layout/header';
+@use './layout/footer';
+
+// Components
+@use './components/hero';
+@use './components/cards';
+@use './components/skills';
+
+// Pages
+@use './pages/about';
+@use './pages/projects';

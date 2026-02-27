@@ -1,0 +1,82 @@
+@use './variables' as *;
+@use './mixins';
+
+body {
+  font-family: $font-main;
+  color: $color-foreground;
+  background-color: $color-background;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: $color-foreground;
+}
+
+h1 {
+  font-size: 3rem;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+  
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
+}
+
+p {
+  line-height: 1.6;
+  color: $color-foreground;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color $transition-normal;
+  
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+// Smooth scroll
+html {
+  scroll-behavior: smooth;
+}
+
+// Selection
+::selection {
+  background-color: $color-primary;
+  color: $color-primary-foreground;
+}
+
+// Accessibility
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

@@ -21,8 +21,9 @@
   --warm-medium: #FFAB91;
   --warm-dark: #FF7043;
   
-  --yellow: #FFD98E;
-  --yellow-light: #FFF3DC;
+  --cool-light: #7AC5E0;
+  --cool-medium: #4FB3D9;
+  --cool-dark: #2C9FCC;
   
   --card: #FFFFFF;
   --card-foreground: #2D2D2D;
@@ -118,6 +119,12 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-warm-light: var(--warm-light);
+  --color-warm-medium: var(--warm-medium);
+  --color-warm-dark: var(--warm-dark);
+  --color-cool-light: var(--cool-light);
+  --color-cool-medium: var(--cool-medium);
+  --color-cool-dark: var(--cool-dark);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);

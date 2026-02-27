@@ -1,0 +1,8 @@
+<svg width="800" height="300" viewBox="0 0 800 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background transparent -->
+  
+  <!-- Logo allix.dolou() -->
+  <text x="50" y="180" font-family="'Courier New', monospace" font-size="100" font-weight="600">
+    <tspan fill="#FF9A76">allix.</tspan><tspan fill="#2D2D2D">dolou</tspan><tspan fill="#FF9A76">()</tspan>
+  </text>
+</svg>
