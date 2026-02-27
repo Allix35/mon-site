@@ -8,18 +8,19 @@ export function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    offer: '',
     message: ''
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Créer le mailto avec les données du formulaire
-    const subject = encodeURIComponent(`Contact de ${formData.name}`);
-    const body = encodeURIComponent(`Nom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+    const subject = encodeURIComponent(`Contact de ${formData.name} - ${formData.offer || 'Demande de renseignement'}`);
+    const body = encodeURIComponent(`Nom: ${formData.name}\nEmail: ${formData.email}\nOffre concernée: ${formData.offer || 'Non spécifiée'}\n\nMessage:\n${formData.message}`);
     window.location.href = `mailto:allix.dolou@gmail.com?subject=${subject}&body=${body}`;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -52,7 +53,7 @@ export function Contact() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                Nom
+                Nom <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -68,7 +69,7 @@ export function Contact() {
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                Email
+                Email <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
@@ -83,8 +84,30 @@ export function Contact() {
             </div>
 
             <div>
+              <label htmlFor="offer" className="block text-sm font-medium text-foreground mb-2">
+                Offre concernée <span className="text-red-500">*</span>
+              </label>
+              <select
+                id="offer"
+                name="offer"
+                value={formData.offer}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+              >
+                <option value="">Sélectionnez une offre</option>
+                <option value="Audit Flash - 350€ HT">Audit Flash - 350€ HT</option>
+                <option value="Landing Page - à partir de 900€ HT">Landing Page - à partir de 900€ HT</option>
+                <option value="Site WordPress - à partir de 1 400€ HT">Site WordPress - à partir de 1 400€ HT</option>
+                <option value="Site Sur-Mesure React/Next.js - à partir de 2 200€ HT">Site Sur-Mesure React/Next.js - à partir de 2 200€ HT</option>
+                <option value="Pack Sérénité - à partir de 300€/mois HT">Pack Sérénité - à partir de 300€/mois HT</option>
+                <option value="Autre">Autre</option>
+              </select>
+            </div>
+
+            <div>
               <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                Message
+                Message <span className="text-red-500">*</span>
               </label>
               <textarea
                 id="message"
